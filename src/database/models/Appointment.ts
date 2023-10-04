@@ -1,6 +1,6 @@
 import { Schema, Model, Types, model, models } from "mongoose";
 
-interface AppointmentProps {
+export interface AppointmentProps {
   _id: Types.ObjectId;
   title: string;
   start: Date | null;
