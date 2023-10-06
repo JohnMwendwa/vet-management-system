@@ -1,4 +1,4 @@
-type Action =
+export type Action =
   | {
       type: "OPEN_SIDENAV";
       payload: boolean;
