@@ -15,6 +15,7 @@
     "@fullcalendar/react": "^6.1.9",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
+    "@material-tailwind/react": "^2.1.2",
     "@types/nodemailer": "^6.4.11",
     "mongoose": "^7.5.3",
     "next": "13.5.4",
