@@ -2,13 +2,13 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
-  XMarkIcon,
   HomeIcon,
   UserCircleIcon,
   BellIcon,
-  CalendarIcon,
-} from "@heroicons/react/24/outline";
+  CalendarDaysIcon,
+} from "@heroicons/react/24/solid";
 import {
   Avatar,
   Button,
@@ -132,7 +132,7 @@ const routes = [
   },
   {
     name: "Appointments",
-    icon: <CalendarIcon {...icon} />,
+    icon: <CalendarDaysIcon {...icon} />,
     path: "/dashboard/appointments",
   },
 ];
