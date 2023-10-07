@@ -5,11 +5,11 @@ export type Action =
     }
   | {
       type: "SIDENAV_TYPE";
-      payload: string;
+      payload: "dark" | "white" | "transparent";
     }
   | {
       type: "SIDENAV_COLOR";
-      payload: string;
+      payload: color;
     }
   | {
       type: "TRANSPARENT_NAVBAR";
@@ -24,10 +24,32 @@ export type Action =
       payload: boolean;
     };
 
+export type color =
+  | "white"
+  | "blue-gray"
+  | "gray"
+  | "brown"
+  | "deep-orange"
+  | "orange"
+  | "amber"
+  | "yellow"
+  | "lime"
+  | "light-green"
+  | "green"
+  | "teal"
+  | "cyan"
+  | "light-blue"
+  | "blue"
+  | "indigo"
+  | "deep-purple"
+  | "purple"
+  | "pink"
+  | "red";
+
 export interface StateProps {
   openSidenav: boolean;
-  sidenavColor: string;
-  sidenavType: string;
+  sidenavColor: color;
+  sidenavType: "dark" | "white" | "transparent";
   transparentNavbar: boolean;
   fixedNavbar: boolean;
   openConfigurator: boolean;
