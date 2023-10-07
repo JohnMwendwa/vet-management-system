@@ -6,6 +6,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
   HomeIcon,
   UserCircleIcon,
+  UsersIcon,
   BellIcon,
   CalendarDaysIcon,
 } from "@heroicons/react/24/solid";
@@ -126,14 +127,19 @@ const routes = [
     path: "/dashboard/profile",
   },
   {
-    name: "Notifications",
-    icon: <BellIcon {...icon} />,
-    path: "/dashboard/notifications",
+    name: "clients",
+    icon: <UsersIcon {...icon} />,
+    path: "/dashboard/clients",
   },
   {
     name: "Appointments",
     icon: <CalendarDaysIcon {...icon} />,
     path: "/dashboard/appointments",
+  },
+  {
+    name: "Notifications",
+    icon: <BellIcon {...icon} />,
+    path: "/dashboard/notifications",
   },
 ];
 
