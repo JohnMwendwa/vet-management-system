@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useLayoutContext } from "@/contexts/layout-context";
+import { signOut } from "next-auth/react";
 import {
   Navbar as DashNavbar,
   Typography,
@@ -23,7 +24,8 @@ import {
   CreditCardIcon,
   Bars3Icon,
 } from "@heroicons/react/24/solid";
-import Link from "next/link";
+
+import { useLayoutContext } from "@/contexts/layout-context";
 
 const Navbar = () => {
   const {
@@ -91,6 +93,7 @@ const Navbar = () => {
             variant="text"
             color="blue-gray"
             className="flex items-center gap-1 px-4"
+            onClick={() => signOut()}
           >
             <UserCircleIcon className="block h-5 w-5 text-blue-gray-500" />
             <span className="hidden xl:inline-block">Sign Out</span>
