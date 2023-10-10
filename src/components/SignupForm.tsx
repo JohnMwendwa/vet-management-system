@@ -147,6 +147,7 @@ const SignupForm = () => {
                 crossOrigin={""}
                 color="blue"
                 label="First Name"
+                required
                 containerProps={{ className: "min-w-[72px]" }}
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
@@ -155,6 +156,7 @@ const SignupForm = () => {
                 crossOrigin={""}
                 color="blue"
                 label="Last Name"
+                required
                 containerProps={{ className: "min-w-[72px]" }}
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
@@ -165,6 +167,7 @@ const SignupForm = () => {
               color="blue"
               size="lg"
               label="Email"
+              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -175,6 +178,7 @@ const SignupForm = () => {
               type="password"
               size="lg"
               label="Password"
+              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -184,6 +188,7 @@ const SignupForm = () => {
               type="password"
               size="lg"
               label="Confirm Password"
+              required
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
