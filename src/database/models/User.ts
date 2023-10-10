@@ -36,7 +36,8 @@ const userSchema = new Schema<UserProps, UserModel>(
     },
     role: {
       type: String,
-      enum: ["doctor", "client"],
+      enum: ["doctor", "client", "nurse"],
+      default: "client",
     },
   },
   { timestamps: true }
