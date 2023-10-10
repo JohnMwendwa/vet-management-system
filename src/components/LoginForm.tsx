@@ -41,7 +41,7 @@ const LoginForm = () => {
       <form onSubmit={handleSubmit}>
         <CardBody className="flex flex-col gap-4">
           <Input
-            crossOrigin={true}
+            crossOrigin={""}
             label="Email"
             size="lg"
             color="blue"
@@ -49,7 +49,7 @@ const LoginForm = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
-            crossOrigin={true}
+            crossOrigin={""}
             label="Password"
             size="lg"
             color="blue"
@@ -57,7 +57,7 @@ const LoginForm = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="-ml-2.5">
-            <Checkbox crossOrigin={true} label="Remember Me" color="blue" />
+            <Checkbox crossOrigin={""} label="Remember Me" color="blue" />
           </div>
         </CardBody>
 
