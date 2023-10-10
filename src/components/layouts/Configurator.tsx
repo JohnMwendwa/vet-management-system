@@ -114,7 +114,7 @@ const Configurator = () => {
             </Typography>
             <Switch
               id="navbar-fixed"
-              crossOrigin={true}
+              crossOrigin={""}
               defaultChecked={fixedNavbar}
               onChange={() =>
                 dispatch({ type: "FIXED_NAVBAR", payload: !fixedNavbar })
