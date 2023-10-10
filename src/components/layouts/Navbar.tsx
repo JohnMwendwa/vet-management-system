@@ -75,7 +75,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center">
           <div className="mr-auto md:mr-4 md:w-56">
-            <Input crossOrigin={true} label="Search" />
+            <Input crossOrigin={""} label="Search" />
           </div>
           <IconButton
             variant="text"
