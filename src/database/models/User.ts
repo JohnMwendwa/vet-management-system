@@ -1,4 +1,5 @@
 import { Schema, model, models, Model, Types } from "mongoose";
+import { compare } from "bcrypt";
 
 export interface UserProps {
   _id: Types.ObjectId;
@@ -11,7 +12,11 @@ export interface UserProps {
   role: string;
 }
 
-const userSchema = new Schema<UserProps>(
+interface UserModel extends Model<UserProps> {
+  findByCredentials(email: string, password: string): UserProps;
+}
+
+const userSchema = new Schema<UserProps, UserModel>(
   {
     firstName: {
       type: String,
@@ -37,7 +42,38 @@ const userSchema = new Schema<UserProps>(
   { timestamps: true }
 );
 
-const User =
-  (models.User as Model<UserProps>) || model<UserProps>("User", userSchema);
+// Hide private and sensitive data
+userSchema.methods.toJSON = function () {
+  const user = this;
+  const userObject = user.toObject();
+  const { password, ...rest } = userObject;
 
+  return rest;
+};
+
+// Create a custom functin for verifying user credentials
+userSchema.statics.findByCredentials = async function (email, pass) {
+  const user = await this.findOne({ email });
+
+  // If user doesn't exist, throw an error
+  if (!user) {
+    throw new Error("Invalid Credentials!");
+  }
+
+  // compare the password with the one in the DB
+  const isMatch = await compare(pass, user.password);
+
+  // If passwords don't match, throw an error
+  if (!isMatch) {
+    throw new Error("Invalid Credentials!");
+  }
+
+  const { password, ...userInfo } = user.toObject();
+
+  return userInfo;
+};
+
+const User =
+  (models.User as unknown as UserModel) ||
+  model<UserProps, UserModel>("User", userSchema);
 export default User;
