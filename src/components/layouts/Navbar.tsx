@@ -24,6 +24,13 @@ import {
   CreditCardIcon,
   Bars3Icon,
 } from "@heroicons/react/24/solid";
+import {
+  CalendarDaysIcon,
+  InboxArrowDownIcon,
+  LifebuoyIcon,
+  PowerIcon,
+  UserCircleIcon as UserCircle,
+} from "@heroicons/react/24/outline";
 
 import { useLayoutContext } from "@/contexts/layout-context";
 
@@ -89,15 +96,71 @@ const Navbar = () => {
           >
             <Bars3Icon strokeWidth={3} className="h-6 w-6 text-blue-gray-500" />
           </IconButton>
-          <Button
-            variant="text"
-            color="blue-gray"
-            className="flex items-center gap-1 px-4"
-            onClick={() => signOut()}
-          >
-            <UserCircleIcon className="block h-5 w-5 text-blue-gray-500" />
-            <span className="hidden xl:inline-block">Sign Out</span>
-          </Button>
+
+          <Menu>
+            <MenuHandler>
+              <IconButton variant="text" color="blue-gray">
+                <UserCircleIcon className="block h-6 w-6 text-blue-gray-500" />
+              </IconButton>
+            </MenuHandler>
+            <MenuList>
+              <MenuItem className="flex items-center gap-2">
+                <UserCircle className="h-5 w-5" />
+                <Typography
+                  as={Link}
+                  href="/dashboard/profile"
+                  variant="small"
+                  className="font-normal"
+                >
+                  My Profile
+                </Typography>
+              </MenuItem>
+              <MenuItem className="flex items-center gap-2">
+                <CalendarDaysIcon className="h-5 w-5" />
+                <Typography
+                  as={Link}
+                  href="/dashboard/appointments"
+                  variant="small"
+                  className="font-normal"
+                >
+                  My Appointments
+                </Typography>
+              </MenuItem>
+              <MenuItem className="flex items-center gap-2">
+                <InboxArrowDownIcon className="h-5 w-5" />
+                <Typography
+                  as={Link}
+                  href="/dashboard/notifications"
+                  variant="small"
+                  className="font-normal"
+                >
+                  Inbox
+                </Typography>
+              </MenuItem>
+              <MenuItem className="flex items-center gap-2">
+                <LifebuoyIcon className="h-5 w-5" />
+                <Typography
+                  as={Link}
+                  href="#!"
+                  variant="small"
+                  className="font-normal"
+                >
+                  Help
+                </Typography>
+              </MenuItem>
+              <hr className="my-2 border-blue-gray-50" />
+              <MenuItem
+                className="flex items-center gap-2 focus:bg-red-400 focus:text-white"
+                onClick={() => signOut()}
+              >
+                <PowerIcon className="h-5 w-5" />
+                <Typography variant="small" className="font-normal">
+                  Sign Out
+                </Typography>
+              </MenuItem>
+            </MenuList>
+          </Menu>
+
           <IconButton
             variant="text"
             color="blue-gray"
