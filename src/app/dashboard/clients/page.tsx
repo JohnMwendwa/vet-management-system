@@ -1,5 +1,7 @@
+import Clients from "@/components/dashboard/Clients";
+
 const ClientsPage = () => {
-  return <div>Clients Page</div>;
+  return <Clients data={[]} />;
 };
 
 export default ClientsPage;
