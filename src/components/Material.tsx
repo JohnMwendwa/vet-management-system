@@ -3,6 +3,9 @@
 import {
   Button,
   Card,
+  CardBody,
+  CardHeader,
+  CardFooter,
   Typography,
   List,
   ListItem,
@@ -41,6 +44,9 @@ import {
 export {
   Button,
   Card,
+  CardBody,
+  CardHeader,
+  CardFooter,
   Typography,
   List,
   ListItem,
