@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.fc-header-toolbar {
+  display: inline-block;
+  padding: 4px;
+
+  @apply space-x-8;
+}
+
+.fc-day {
+  @apply m-8;
+}
+
+.fc-scrollgrid-sync-table {
+  @apply w-full;
+}
+
+.fc-view {
+  @apply w-full bg-white;
+}
+
+.fc-h-event {
+  @apply bg-blue-500 border border-blue-600 text-center;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  @apply bg-blue-100;
+}
+
+.fc .fc-button {
+  @apply bg-blue-800 hover:bg-blue-900;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+  @apply bg-blue-600;
+}
+
+.fc .fc-button-primary:disabled {
+  @apply bg-blue-600;
+}
+.fc-v-event {
+  @apply bg-blue-500 border border-blue-600;
+}
