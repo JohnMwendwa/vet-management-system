@@ -9,6 +9,7 @@ import {
   UsersIcon,
   BellIcon,
   CalendarDaysIcon,
+  UserGroupIcon,
 } from "@heroicons/react/24/solid";
 import {
   Avatar,
@@ -130,6 +131,11 @@ const routes = [
     name: "clients",
     icon: <UsersIcon {...icon} />,
     path: "/dashboard/clients",
+  },
+  {
+    name: "Employees",
+    icon: <UserGroupIcon {...icon} />,
+    path: "/dashboard/employees",
   },
   {
     name: "Appointments",
