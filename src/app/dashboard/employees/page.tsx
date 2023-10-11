@@ -1,5 +1,7 @@
+import Employees from "@/components/dashboard/Employees";
+
 const EmployeesPage = () => {
-  return <div>Employees Page</div>;
+  return <Employees data={[]} />;
 };
 
 export default EmployeesPage;
