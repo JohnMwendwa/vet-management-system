@@ -1,5 +1,7 @@
+import Profile from "@/components/dashboard/Profile";
+
 const ProfilePage = () => {
-  return <div>Profile Page</div>;
+  return <Profile />;
 };
 
 export default ProfilePage;
