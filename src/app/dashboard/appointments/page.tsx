@@ -1,5 +1,7 @@
+import Calendar from "@/components/Calendar";
+
 const AppointmentsPage = () => {
-  return <div>Appointments Page</div>;
+  return <Calendar events={[]} />;
 };
 
 export default AppointmentsPage;
