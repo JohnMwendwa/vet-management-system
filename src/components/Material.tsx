@@ -39,6 +39,8 @@ import {
   DialogHeader,
   DialogBody,
   DialogFooter,
+  Tooltip,
+  Badge,
 } from "@material-tailwind/react";
 
 export {
@@ -80,4 +82,6 @@ export {
   DialogHeader,
   DialogBody,
   DialogFooter,
+  Tooltip,
+  Badge,
 };
