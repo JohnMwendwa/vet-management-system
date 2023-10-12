@@ -1,5 +1,5 @@
 import { UserProps } from "@/database/models/User";
-
+import formateDate from "@/helpers/format-date";
 import { Card, CardBody, CardHeader, Typography } from "@/components/Material";
 
 interface ClientsProps {
@@ -63,7 +63,7 @@ const Clients = ({ data }: ClientsProps) => {
                       </td>
                       <td className={className}>
                         <Typography className="text-xs font-semibold text-blue-gray-600">
-                          {new Date(createdAt).getDate()}
+                          {formateDate(createdAt)}
                         </Typography>
                       </td>
                       <td className={className}>
