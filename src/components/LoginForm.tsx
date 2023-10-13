@@ -65,10 +65,7 @@ const LoginForm = () => {
     );
   } else {
     return (
-      <Card
-        color="transparent"
-        className="px-4 pb-2 max-w-sm w-full shadow-blue-300"
-      >
+      <Card color="white" className="px-4 pb-2 max-w-sm w-full shadow-blue-300">
         <CardHeader
           variant="gradient"
           color="blue"
