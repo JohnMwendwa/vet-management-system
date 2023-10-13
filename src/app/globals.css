@@ -43,3 +43,25 @@
 .fc-v-event {
   @apply bg-blue-500 border border-blue-600;
 }
+
+/* SVG */
+.custom-shape-divider-bottom-1697214170 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1697214170 svg {
+  position: relative;
+  display: block;
+  width: calc(111% + 1.3px);
+  height: 235px;
+}
+
+.custom-shape-divider-bottom-1697214170 .shape-fill {
+  fill: #0ea5e9;
+}
