@@ -126,7 +126,7 @@ const SignupForm = () => {
   } else {
     return (
       <Card
-        color="transparent"
+        color="white"
         shadow={true}
         className="px-4 pb-2 max-w-sm w-full shadow-blue-300"
       >
