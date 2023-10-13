@@ -5,13 +5,11 @@ import {
   CardBody,
   CardHeader,
   Typography,
-  IconButton,
-  Tooltip,
   Button,
   Input,
 } from "@/components/Material";
-import { PencilIcon } from "@heroicons/react/24/solid";
 import { MagnifyingGlassIcon, UserPlusIcon } from "@heroicons/react/24/outline";
+import EditDialog from "../EditDialog";
 
 interface ClientsProps {
   data: UserProps[];
@@ -99,11 +97,13 @@ const Clients = ({ data }: ClientsProps) => {
                     </Typography>
                   </td>
                   <td className={className}>
-                    <Tooltip content="Edit User">
-                      <IconButton variant="text" color="blue">
-                        <PencilIcon className="h-4 w-4" />
-                      </IconButton>
-                    </Tooltip>
+                    <EditDialog
+                      first={firstName}
+                      last={lastName}
+                      userEmail={email}
+                      id={_id.toString()}
+                      url="/api/clients"
+                    />
                   </td>
                 </tr>
               );
