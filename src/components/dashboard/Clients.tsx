@@ -7,8 +7,11 @@ import {
   Typography,
   IconButton,
   Tooltip,
+  Button,
+  Input,
 } from "@/components/Material";
 import { PencilIcon } from "@heroicons/react/24/solid";
+import { MagnifyingGlassIcon, UserPlusIcon } from "@heroicons/react/24/outline";
 
 interface ClientsProps {
   data: UserProps[];
@@ -17,10 +20,35 @@ interface ClientsProps {
 const Clients = ({ data }: ClientsProps) => {
   return (
     <Card className="mt-12 mb-8 flex flex-col w-full">
-      <CardHeader variant="gradient" color="blue" className="mb-8 p-6">
-        <Typography variant="h6" color="white">
-          Clients Table
-        </Typography>
+      <CardHeader floated={false} shadow={false} className="rounded-none p-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 md:gap-8">
+          <div>
+            <Typography variant="h5" color="blue-gray">
+              Clients list
+            </Typography>
+            <Typography color="gray" className="mt-1 font-normal">
+              See information about your clients
+            </Typography>
+          </div>
+          <div className="flex w-full sm:w-auto flex-col-reverse sm:flex-co md:flex-row shrink-0 gap-3 md:w-max">
+            <div className="w-full md:w-72">
+              <Input
+                crossOrigin={""}
+                label="Search"
+                color="blue"
+                icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+              />
+            </div>
+            <Button
+              className="flex items-center gap-3 py-4 md:py-0"
+              color="blue"
+              size="sm"
+            >
+              <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add New
+              Client
+            </Button>
+          </div>
+        </div>
       </CardHeader>
       <CardBody className="px-0 overflow-x-scroll">
         <table className="w-full min-w-max table-auto">
@@ -29,11 +57,11 @@ const Clients = ({ data }: ClientsProps) => {
               {["client", "date created", ""].map((el) => (
                 <th
                   key={el}
-                  className="border-b border-blue-gray-50  py-3 px-5 text-left"
+                  className="border-b border-blue-gray-50  bg-blue-500 p-5 text-left"
                 >
                   <Typography
                     variant="small"
-                    className="font-bold uppercase text-blue-gray-400"
+                    className="font-bold uppercase text-white"
                   >
                     {el}
                   </Typography>
@@ -72,7 +100,7 @@ const Clients = ({ data }: ClientsProps) => {
                   </td>
                   <td className={className}>
                     <Tooltip content="Edit User">
-                      <IconButton variant="text">
+                      <IconButton variant="text" color="blue">
                         <PencilIcon className="h-4 w-4" />
                       </IconButton>
                     </Tooltip>
