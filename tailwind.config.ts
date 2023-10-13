@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors";
 
 const withMT = require("@material-tailwind/react/utils/withMT");
 
@@ -14,6 +15,12 @@ const config: Config = withMT({
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      colors: {
+        rose: colors.rose,
+        cyan: colors.cyan,
+        slate: colors.slate,
+        sky: colors.sky,
       },
     },
   },
