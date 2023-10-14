@@ -5,6 +5,7 @@ import { authOptions } from "../auth/[...nextauth]/route";
 import User from "@/database/models/User";
 import { hashPassword } from "@/database/auth";
 
+// Add new employee in the database
 export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
@@ -98,6 +99,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
+// Change employee details in the database
 export async function PATCH(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
@@ -170,6 +172,71 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json(
       {
         message: "Employee details updated successfully",
+      },
+      {
+        status: 200,
+      }
+    );
+  } catch (e) {
+    return NextResponse.json(
+      {
+        error: (e as Error).message,
+      },
+      {
+        status: 500,
+      }
+    );
+  }
+}
+
+// Delete employee from database
+export async function DELETE(req: NextRequest) {
+  try {
+    const session = await getServerSession(authOptions);
+
+    // check if user session exists
+    if (!session) {
+      return NextResponse.json(
+        {
+          error: "Not Allowed to Access this resource",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+
+    const user = await User.findOne({ email: session.user?.email });
+    //   check if uses who has active session exists
+    if (!user || user.role !== "doctor") {
+      return NextResponse.json(
+        {
+          error: "Not Allowed to Access this resource",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+
+    const { id } = await req.json();
+
+    if (!id) {
+      return NextResponse.json(
+        {
+          error: "Provide a valid employee id",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+
+    await User.findByIdAndDelete(id);
+
+    return NextResponse.json(
+      {
+        message: "Employee deleted successfully",
       },
       {
         status: 200,
