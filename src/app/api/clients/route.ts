@@ -183,3 +183,67 @@ export async function PATCH(req: NextRequest) {
     );
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const session = await getServerSession(authOptions);
+
+    // check if user session exists
+    if (!session) {
+      return NextResponse.json(
+        {
+          error: "Not Allowed to Access this resource",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+
+    const user = await User.findOne({ email: session.user?.email });
+    //   check if uses who has active session exists
+    if (!user || user.role !== "doctor") {
+      return NextResponse.json(
+        {
+          error: "Not Allowed to Access this resource",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+
+    const { id } = await req.json();
+
+    if (!id) {
+      return NextResponse.json(
+        {
+          error: "Provide a valid client id",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+
+    await User.findByIdAndDelete(id);
+
+    return NextResponse.json(
+      {
+        message: "Client deleted successfully",
+      },
+      {
+        status: 200,
+      }
+    );
+  } catch (e) {
+    return NextResponse.json(
+      {
+        error: (e as Error).message,
+      },
+      {
+        status: 500,
+      }
+    );
+  }
+}
