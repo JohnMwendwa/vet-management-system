@@ -11,6 +11,8 @@ import {
   DialogHeader,
   IconButton,
   Input,
+  Option,
+  Select,
   Tooltip,
 } from "@/components/Material";
 import { PencilIcon } from "@heroicons/react/24/solid";
@@ -21,12 +23,21 @@ interface EditDialogProps {
   userEmail: string;
   url: string;
   id: string;
+  userRole?: string;
 }
 
-const EditDialog = ({ first, last, userEmail, url, id }: EditDialogProps) => {
+const EditDialog = ({
+  first,
+  last,
+  userEmail,
+  url,
+  id,
+  userRole,
+}: EditDialogProps) => {
   const [firstName, setFirstName] = useState(first);
   const [lastName, setLastName] = useState(last);
   const [email, setEmail] = useState(userEmail);
+  const [role, setRole] = useState<string | undefined>(userRole);
   const [open, setOpen] = useState(false);
 
   const router = useRouter();
@@ -42,6 +53,7 @@ const EditDialog = ({ first, last, userEmail, url, id }: EditDialogProps) => {
         lastName,
         email,
         id,
+        role,
       }),
       headers: {
         "content-type": "application/json",
@@ -79,6 +91,7 @@ const EditDialog = ({ first, last, userEmail, url, id }: EditDialogProps) => {
   };
 
   const handleOpen = () => setOpen((prev) => !prev);
+
   return (
     <>
       <Tooltip content="Edit User">
@@ -125,6 +138,18 @@ const EditDialog = ({ first, last, userEmail, url, id }: EditDialogProps) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+              {userRole && (
+                <Select
+                  value={role}
+                  onChange={(el) => setRole(el)}
+                  color="blue"
+                  label="Role"
+                  name="role"
+                >
+                  <Option value="nurse">Nurse</Option>
+                  <Option value="doctor">Doctor</Option>
+                </Select>
+              )}
             </div>
           </DialogBody>
           <DialogFooter className="space-x-2">
