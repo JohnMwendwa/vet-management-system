@@ -134,6 +134,7 @@ const Employees = ({ data }: EmployeesProps) => {
                         first={firstName}
                         last={lastName}
                         userEmail={email}
+                        userRole={role}
                         id={_id.toString()}
                         url="/api/employees"
                       />
