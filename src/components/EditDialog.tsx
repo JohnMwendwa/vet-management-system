@@ -36,7 +36,7 @@ const EditDialog = ({ first, last, userEmail, url, id }: EditDialogProps) => {
     setOpen(false);
 
     const res = await fetch(url, {
-      method: "POST",
+      method: "PATCH",
       body: JSON.stringify({
         firstName,
         lastName,
