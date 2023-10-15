@@ -16,6 +16,7 @@ import {
 import formatDate from "@/helpers/format-date";
 import EditDialog from "../EditDialog";
 import AddDialog from "../AddDialog";
+import DeleteDialog from "../DeleteDialog";
 
 interface EmployeesProps {
   data: UserProps[];
@@ -143,6 +144,12 @@ const Employees = ({ data }: EmployeesProps) => {
                         last={lastName}
                         userEmail={email}
                         userRole={role}
+                        id={_id.toString()}
+                        url="/api/employees"
+                      />
+                      <DeleteDialog
+                        name={`${firstName} ${lastName}`}
+                        email={email}
                         id={_id.toString()}
                         url="/api/employees"
                       />
