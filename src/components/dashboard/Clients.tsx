@@ -5,11 +5,12 @@ import {
   CardBody,
   CardHeader,
   Typography,
-  Button,
   Input,
 } from "@/components/Material";
 import { MagnifyingGlassIcon, UserPlusIcon } from "@heroicons/react/24/outline";
 import EditDialog from "../EditDialog";
+import DeleteDialog from "../DeleteDialog";
+import AddDialog from "../AddDialog";
 
 interface ClientsProps {
   data: UserProps[];
@@ -37,14 +38,16 @@ const Clients = ({ data }: ClientsProps) => {
                 icon={<MagnifyingGlassIcon className="h-5 w-5" />}
               />
             </div>
-            <Button
+            <AddDialog
+              title="Client"
+              url="/api/clients"
               className="flex items-center gap-3 py-4 md:py-0"
               color="blue"
               size="sm"
             >
               <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add New
               Client
-            </Button>
+            </AddDialog>
           </div>
         </div>
       </CardHeader>
@@ -101,6 +104,12 @@ const Clients = ({ data }: ClientsProps) => {
                       first={firstName}
                       last={lastName}
                       userEmail={email}
+                      id={_id.toString()}
+                      url="/api/clients"
+                    />
+                    <DeleteDialog
+                      name={`${firstName} ${lastName}`}
+                      email={email}
                       id={_id.toString()}
                       url="/api/clients"
                     />
