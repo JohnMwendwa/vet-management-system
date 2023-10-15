@@ -15,6 +15,7 @@ import {
 } from "@/components/Material";
 import formatDate from "@/helpers/format-date";
 import EditDialog from "../EditDialog";
+import AddDialog from "../AddDialog";
 
 interface EmployeesProps {
   data: UserProps[];
@@ -49,10 +50,17 @@ const Employees = ({ data }: EmployeesProps) => {
             </Typography>
           </div>
           <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-            <Button className="flex items-center gap-3" color="blue" size="sm">
+            <AddDialog
+              title="Employee"
+              userRole
+              url="/api/employees"
+              className="flex items-center gap-3"
+              color="blue"
+              size="sm"
+            >
               <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add New
               Employee
-            </Button>
+            </AddDialog>
           </div>
         </div>
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
