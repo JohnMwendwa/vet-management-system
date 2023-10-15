@@ -2,6 +2,8 @@ import Home from "@/components/dashboard/Home";
 import connectDB from "@/database/connection";
 import User from "@/database/models/User";
 
+export const revalidate = 0;
+
 const fetchStatistics = async () => {
   await connectDB();
   const employees = await User.find({
