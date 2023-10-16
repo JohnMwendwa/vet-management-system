@@ -20,7 +20,7 @@
     "@types/nodemailer": "^6.4.11",
     "bcrypt": "^5.1.1",
     "mongoose": "^7.5.3",
-    "next": "13.5.4",
+    "next": "^13.4.9",
     "next-auth": "^4.23.2",
     "nodemailer": "^6.9.5",
     "react": "^18",
@@ -35,9 +35,9 @@
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
     "eslint": "^8",
-    "eslint-config-next": "13.5.4",
+    "eslint-config-next": "^13",
     "postcss": "^8",
     "tailwindcss": "^3",
-    "typescript": "^5.2.2"
+    "typescript": "^5"
   }
 }
