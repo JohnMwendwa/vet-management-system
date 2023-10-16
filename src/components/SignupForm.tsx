@@ -67,7 +67,7 @@ const SignupForm = () => {
       setLoading(false);
       toast.error("A name should have more than two characters", {
         position: "top-right",
-        autoClose: 2000,
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -82,7 +82,7 @@ const SignupForm = () => {
       setLoading(false);
       toast.error("Passwords don't match!", {
         position: "top-right",
-        autoClose: 2000,
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -105,7 +105,7 @@ const SignupForm = () => {
       setLoading(false);
       toast.error((e as Error).message, {
         position: "top-right",
-        autoClose: 2000,
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

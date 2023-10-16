@@ -9,21 +9,28 @@ import {
   Input,
   Checkbox,
   Button,
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
 } from "@material-tailwind/react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import { FormEvent, useState } from "react";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
   const params = useSearchParams();
   const query = params?.get("callbackUrl");
+
+  const handleOpen = () => setOpen((prev) => !prev);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -42,7 +49,7 @@ const LoginForm = () => {
     if (res?.error) {
       toast.error(res.error, {
         position: "top-center",
-        autoClose: 2000,
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -78,6 +85,32 @@ const LoginForm = () => {
 
         <form onSubmit={handleSubmit}>
           <CardBody className="flex flex-col gap-4">
+            <Accordion
+              open={open}
+              className="px-4 border border-blue-500 rounded-lg"
+              icon={
+                open ? (
+                  <ChevronDownIcon className="h-6 w-6 text-blue-900" />
+                ) : (
+                  <ChevronUpIcon className="h-6 w-6 text-blue-900" />
+                )
+              }
+            >
+              <AccordionHeader onClick={handleOpen} className={`border-b-0`}>
+                Demo Account
+              </AccordionHeader>
+              <AccordionBody className="flex flex-col justify-center pt-0">
+                <Typography variant="small">
+                  <b className="font-extrabold text-blue-500">Email: </b>
+                  example@gmail.com
+                </Typography>
+                <Typography variant="small">
+                  <b className="font-extrabold text-blue-500">Password: </b>
+                  12345678
+                </Typography>
+              </AccordionBody>
+            </Accordion>
+
             <Input
               crossOrigin={""}
               label="Email"

@@ -162,6 +162,18 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
+    // Prevent demo account from being updated
+    if (employee?.email === "example@gmail.com") {
+      return NextResponse.json(
+        {
+          error: "This user account cannot be changed",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+
     // update employee details in the database
     employee.firstName = firstName;
     employee.lastName = lastName;
@@ -206,9 +218,9 @@ export async function DELETE(req: NextRequest) {
       );
     }
 
-    const user = await User.findOne({ email: session.user?.email });
+    const currUser = await User.findOne({ email: session.user?.email });
     //   check if uses who has active session exists
-    if (!user || user.role !== "doctor") {
+    if (!currUser || currUser.role !== "doctor") {
       return NextResponse.json(
         {
           error: "Not Allowed to Access this resource",
@@ -231,8 +243,21 @@ export async function DELETE(req: NextRequest) {
         }
       );
     }
+    const user = await User.findById(id);
 
-    await User.findByIdAndDelete(id);
+    // Prevent demo account from being deleted
+    if (user?.email === "example@gmail.com") {
+      return NextResponse.json(
+        {
+          error: "This user account cannot be deleted",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+
+    await user?.deleteOne();
 
     return NextResponse.json(
       {
