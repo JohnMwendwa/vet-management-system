@@ -62,7 +62,7 @@ const DeleteDialog = ({ name, email, url, id }: DeleteDialogProps) => {
     } else {
       toast.error(data.error, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
