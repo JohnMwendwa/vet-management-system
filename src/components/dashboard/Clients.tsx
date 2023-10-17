@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useMemo } from "react";
 import { UserProps } from "@/database/models/User";
 import formateDate from "@/helpers/format-date";
 import {
@@ -17,6 +20,17 @@ interface ClientsProps {
 }
 
 const Clients = ({ data }: ClientsProps) => {
+  const [searchClient, setSearchClient] = useState("");
+
+  const filteredClients = useMemo(() => {
+    return data.filter((client) => {
+      const searchContent = client.firstName + client.lastName + client.email;
+
+      return searchContent
+        .toLowerCase()
+        .includes(searchClient.trim().toLowerCase());
+    });
+  }, [searchClient, data]);
   return (
     <Card className="mt-12 mb-8 flex flex-col w-full">
       <CardHeader floated={false} shadow={false} className="rounded-none p-4">
@@ -36,6 +50,8 @@ const Clients = ({ data }: ClientsProps) => {
                 label="Search"
                 color="blue"
                 icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+                value={searchClient}
+                onChange={(e) => setSearchClient(e.target.value)}
               />
             </div>
             <AddDialog
@@ -71,52 +87,54 @@ const Clients = ({ data }: ClientsProps) => {
             </tr>
           </thead>
           <tbody>
-            {data.map(({ _id, firstName, lastName, email, createdAt }, idx) => {
-              const className = `py-3 px-5 ${
-                idx === data.length - 1 ? "" : "border-b border-blue-gray-50"
-              }`;
+            {filteredClients.map(
+              ({ _id, firstName, lastName, email, createdAt }, idx) => {
+                const className = `py-3 px-5 ${
+                  idx === data.length - 1 ? "" : "border-b border-blue-gray-50"
+                }`;
 
-              return (
-                <tr key={_id.toString()} className="even:bg-blue-gray-50/50">
-                  <td className={className}>
-                    <div className="flex items-center gap-4">
-                      <div>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-semibold"
-                        >
-                          {firstName} {lastName}
-                        </Typography>
-                        <Typography className="text-xs font-normal text-blue-gray-500">
-                          {email}
-                        </Typography>
+                return (
+                  <tr key={_id.toString()} className="even:bg-blue-gray-50/50">
+                    <td className={className}>
+                      <div className="flex items-center gap-4">
+                        <div>
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-semibold"
+                          >
+                            {firstName} {lastName}
+                          </Typography>
+                          <Typography className="text-xs font-normal text-blue-gray-500">
+                            {email}
+                          </Typography>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td className={className}>
-                    <Typography className="text-xs font-semibold text-blue-gray-600">
-                      {formateDate(createdAt)}
-                    </Typography>
-                  </td>
-                  <td className={className}>
-                    <EditDialog
-                      first={firstName}
-                      last={lastName}
-                      userEmail={email}
-                      id={_id.toString()}
-                      url="/api/clients"
-                    />
-                    <DeleteDialog
-                      name={`${firstName} ${lastName}`}
-                      email={email}
-                      id={_id.toString()}
-                      url="/api/clients"
-                    />
-                  </td>
-                </tr>
-              );
-            })}
+                    </td>
+                    <td className={className}>
+                      <Typography className="text-xs font-semibold text-blue-gray-600">
+                        {formateDate(createdAt)}
+                      </Typography>
+                    </td>
+                    <td className={className}>
+                      <EditDialog
+                        first={firstName}
+                        last={lastName}
+                        userEmail={email}
+                        id={_id.toString()}
+                        url="/api/clients"
+                      />
+                      <DeleteDialog
+                        name={`${firstName} ${lastName}`}
+                        email={email}
+                        id={_id.toString()}
+                        url="/api/clients"
+                      />
+                    </td>
+                  </tr>
+                );
+              }
+            )}
           </tbody>
         </table>
       </CardBody>
