@@ -1,9 +1,11 @@
+"use client";
+
+import { useState, useMemo } from "react";
 import { UserPlusIcon } from "@heroicons/react/24/solid";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 import { UserProps } from "@/database/models/User";
 import {
-  Button,
   Card,
   CardBody,
   CardHeader,
@@ -38,6 +40,19 @@ const TABS = [
 ];
 
 const Employees = ({ data }: EmployeesProps) => {
+  const [searchEmployee, setSearchEmployee] = useState("");
+
+  const filteredEmployees: UserProps[] = useMemo(() => {
+    return data.filter((employee) => {
+      const searchContent =
+        employee.firstName + employee.lastName + employee.email + employee.role;
+
+      return searchContent
+        .toLowerCase()
+        .includes(searchEmployee.trim().toLowerCase());
+    });
+  }, [searchEmployee, data]);
+
   return (
     <Card className="mt-12 mb-8 flex flex-col">
       <CardHeader floated={false} shadow={false} className="rounded-none p-4">
@@ -68,7 +83,17 @@ const Employees = ({ data }: EmployeesProps) => {
           <Tabs value="all" className="w-full md:w-max">
             <TabsHeader>
               {TABS.map(({ label, value }) => (
-                <Tab key={value} value={value}>
+                <Tab
+                  key={value}
+                  value={value}
+                  onClick={() => {
+                    if (value === "all") {
+                      setSearchEmployee("");
+                    } else {
+                      setSearchEmployee(value);
+                    }
+                  }}
+                >
                   &nbsp;&nbsp;{label}&nbsp;&nbsp;
                 </Tab>
               ))}
@@ -80,6 +105,8 @@ const Employees = ({ data }: EmployeesProps) => {
               label="Search"
               color="blue"
               icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+              value={searchEmployee}
+              onChange={(e) => setSearchEmployee(e.target.value)}
             />
           </div>
         </div>
@@ -104,7 +131,7 @@ const Employees = ({ data }: EmployeesProps) => {
             </tr>
           </thead>
           <tbody>
-            {data.map(
+            {filteredEmployees.map(
               ({ _id, firstName, lastName, email, role, createdAt }, idx) => {
                 const className = `py-3 px-5 ${
                   idx === data.length - 1 ? "" : "border-b border-blue-gray-50"
