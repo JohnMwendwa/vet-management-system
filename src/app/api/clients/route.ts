@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 import User from "@/database/models/User";
 import { hashPassword } from "@/database/auth";
+import connectDB from "@/database/connection";
 
 export async function POST(req: NextRequest) {
   try {
@@ -20,6 +21,8 @@ export async function POST(req: NextRequest) {
         }
       );
     }
+
+    await connectDB();
 
     const user = await User.findOne({ email: session.user?.email });
     //   check if uses who has active session exists
@@ -113,6 +116,8 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
+    await connectDB();
+
     const user = await User.findOne({ email: session.user?.email });
     //   check if uses who has active session exists
     if (!user || user.role !== "doctor") {
@@ -199,6 +204,8 @@ export async function DELETE(req: NextRequest) {
         }
       );
     }
+
+    await connectDB();
 
     const user = await User.findOne({ email: session.user?.email });
     //   check if uses who has active session exists
