@@ -8,7 +8,8 @@ const fetchClients = async () => {
   await connectDB();
   const data = await User.find({
     role: "client",
-  });
+  }).sort({ createdAt: -1 });
+
   const dataJSON = JSON.stringify(data);
   return JSON.parse(dataJSON);
 };

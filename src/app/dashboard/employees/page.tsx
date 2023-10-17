@@ -8,7 +8,8 @@ const fetchEmployees = async () => {
   await connectDB();
   const data = await User.find({
     $or: [{ role: "nurse" }, { role: "doctor" }],
-  });
+  }).sort({ createdAt: -1 });
+
   const dataJSON = JSON.stringify(data);
   return JSON.parse(dataJSON);
 };
