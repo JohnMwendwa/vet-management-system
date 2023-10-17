@@ -31,7 +31,7 @@ interface SidebarProps {
 }
 
 const Sidebar = ({
-  brandImg = "",
+  brandImg = "/dog.jpg",
   brandName = "Vet Service",
 }: SidebarProps) => {
   const {
@@ -58,7 +58,7 @@ const Sidebar = ({
           sidenavType === "dark" ? "border-white/20" : "border-blue-gray-50"
         }`}
       >
-        <Link href={"/"} className="flex items-center gap-4 py-6 px-8">
+        <div className="flex items-center gap-4 py-6 px-8">
           <Avatar src={brandImg} size="sm" />
           <Typography
             variant="h6"
@@ -66,7 +66,7 @@ const Sidebar = ({
           >
             {brandName}
           </Typography>
-        </Link>
+        </div>
         <IconButton
           variant="text"
           color="white"
