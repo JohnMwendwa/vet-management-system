@@ -54,7 +54,7 @@ const Navbar = () => {
       fullWidth
       blurred={fixedNavbar}
     >
-      <div className="flex flex-col-reverse justify-between gap-6 md:flex-row md:items-center">
+      <div className="flex justify-between gap-6 items-center">
         <div className="capitalize">
           <Breadcrumbs
             className={`bg-transparent p-0 transition-all ${
@@ -83,9 +83,9 @@ const Navbar = () => {
           </Typography>
         </div>
         <div className="flex items-center">
-          <div className="mr-auto md:mr-4 md:w-56">
+          {/* <div className="mr-auto md:mr-4 md:w-56">
             <Input crossOrigin={""} label="Search" />
-          </div>
+          </div> */}
           <IconButton
             variant="text"
             color="blue-gray"
@@ -168,12 +168,12 @@ const Navbar = () => {
               dispatch({ type: "OPEN_CONFIGURATOR", payload: true })
             }
           >
-            <Cog6ToothIcon className="h-5 w-5 text-blue-gray-500" />
+            <Cog6ToothIcon className="h-6 w-6 text-blue-gray-500" />
           </IconButton>
           <Menu>
             <MenuHandler>
               <IconButton variant="text" color="blue-gray">
-                <BellIcon className="h-5 w-5 text-blue-gray-500" />
+                <BellIcon className="h-6 w-6 text-blue-gray-500" />
               </IconButton>
             </MenuHandler>
             <MenuList className="w-max border-0">
