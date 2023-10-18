@@ -114,7 +114,7 @@ const LoginForm = () => {
               <AccordionBody className="flex flex-col justify-center pt-0">
                 <Typography variant="small">
                   <b className="font-extrabold text-blue-500">Email: </b>
-                  example@gmail.com
+                  admin@gmail.com
                 </Typography>
                 <Typography variant="small">
                   <b className="font-extrabold text-blue-500">Password: </b>

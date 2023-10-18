@@ -167,7 +167,7 @@ export async function PATCH(req: NextRequest) {
     }
 
     // Prevent demo account from being updated
-    if (employee?.email === "example@gmail.com") {
+    if (employee?.email === "admin@gmail.com") {
       return NextResponse.json(
         {
           error: "This user account cannot be changed",
@@ -251,7 +251,7 @@ export async function DELETE(req: NextRequest) {
     const user = await User.findById(id);
 
     // Prevent demo account from being deleted
-    if (user?.email === "example@gmail.com") {
+    if (user?.email === "admin@gmail.com") {
       return NextResponse.json(
         {
           error: "This user account cannot be deleted",
