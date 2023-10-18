@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useSession, signIn } from "next-auth/react";
 import { toast } from "react-toastify";
@@ -116,8 +116,13 @@ const SignupForm = () => {
     }
   };
 
+  useEffect(() => {
+    if (session) {
+      router.replace(query ? query.toString() : "/dashboard");
+    }
+  }, [router, query, session]);
+
   if (session) {
-    router.replace(query ? query.toString() : "/dashboard");
     return (
       <div className="flex flex-col justify-center items-center flex-1 text-2xl">
         Redirecting...
