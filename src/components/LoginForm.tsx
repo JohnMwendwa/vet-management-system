@@ -17,7 +17,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 import { toast } from "react-toastify";
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 
 const LoginForm = () => {
@@ -29,6 +29,12 @@ const LoginForm = () => {
   const router = useRouter();
   const params = useSearchParams();
   const query = params?.get("callbackUrl");
+
+  useEffect(() => {
+    if (session) {
+      router.replace(query ? query.toString() : "/dashboard");
+    }
+  }, [router, query, session]);
 
   const handleOpen = () => setOpen((prev) => !prev);
 
@@ -64,7 +70,6 @@ const LoginForm = () => {
   };
 
   if (session) {
-    router.replace(query ? query.toString() : "/dashboard");
     return (
       <div className="flex flex-col justify-center items-center flex-1 text-2xl">
         Redirecting...

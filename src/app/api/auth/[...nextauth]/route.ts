@@ -2,7 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import connectDB from "@/database/connection";
-import User from "@/database/models/User";
+import User, { UserProps } from "@/database/models/User";
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -22,8 +22,8 @@ export const authOptions: NextAuthOptions = {
         await connectDB();
 
         const user = await User.findByCredentials(
-          credentials?.email!,
-          credentials?.password!
+          credentials?.email.trim()!,
+          credentials?.password.trim()!
         );
 
         return {
@@ -31,10 +31,28 @@ export const authOptions: NextAuthOptions = {
           image: "",
           name: `${user.firstName} ${user.lastName}`,
           id: user._id.toString(),
+          role: user.role,
         };
       },
     }),
   ],
+
+  callbacks: {
+    jwt: async ({ token, user }) => {
+      if (user)
+        token.user = {
+          ...token.user,
+          role: (user as unknown as UserProps).role,
+        };
+      return token;
+    },
+    session: async ({ session, token }) => {
+      if (session.user) {
+        session.user.role = token.user.role;
+      }
+      return session;
+    },
+  },
 
   pages: {
     signIn: "/",
