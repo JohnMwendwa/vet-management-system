@@ -60,7 +60,7 @@ export const initialLayoutState: StateProps = {
   sidenavColor: "blue",
   sidenavType: "dark",
   transparentNavbar: true,
-  fixedNavbar: false,
+  fixedNavbar: true,
   openConfigurator: false,
 };
 

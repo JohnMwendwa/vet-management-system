@@ -164,6 +164,7 @@ const Navbar = () => {
           <IconButton
             variant="text"
             color="blue-gray"
+            className="hidden sm:block"
             onClick={() =>
               dispatch({ type: "OPEN_CONFIGURATOR", payload: true })
             }
