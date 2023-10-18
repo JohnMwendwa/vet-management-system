@@ -18,11 +18,17 @@ import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import { FormEvent, useState, useEffect } from "react";
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  EyeIcon,
+  EyeSlashIcon,
+} from "@heroicons/react/24/solid";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const { data: session } = useSession();
@@ -37,6 +43,7 @@ const LoginForm = () => {
   }, [router, query, session]);
 
   const handleOpen = () => setOpen((prev) => !prev);
+  const handleShowPass = () => setShowPass((prev) => !prev);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -128,8 +135,22 @@ const LoginForm = () => {
             <Input
               crossOrigin={""}
               label="Password"
+              type={`${showPass ? "text" : "password"}`}
               size="lg"
               color="blue"
+              icon={
+                showPass ? (
+                  <EyeIcon
+                    onClick={handleShowPass}
+                    className="h-5 w-5 text-blue-500 cursor-pointer"
+                  />
+                ) : (
+                  <EyeSlashIcon
+                    onClick={handleShowPass}
+                    className="h-5 w-5 cursor-pointer"
+                  />
+                )
+              }
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
