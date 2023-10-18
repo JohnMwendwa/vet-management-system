@@ -22,8 +22,8 @@ export const authOptions: NextAuthOptions = {
         await connectDB();
 
         const user = await User.findByCredentials(
-          credentials?.email!,
-          credentials?.password!
+          credentials?.email.trim()!,
+          credentials?.password.trim()!
         );
 
         return {
