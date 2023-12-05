@@ -1,8 +1,9 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { PowerIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import {
   HomeIcon,
   UserCircleIcon,
@@ -51,7 +52,7 @@ const Sidebar = ({
     <aside
       className={`${sidenavTypes[sidenavType]} ${
         openSidenav ? "translate-x-0" : "-translate-x-80"
-      } fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 `}
+      } fixed inset-0 z-[999] my-4 ml-4 w-72 rounded-xl transition-transform duration-300 xl:translate-x-0 flex flex-col`}
     >
       <div
         className={`relative border-b ${
@@ -107,6 +108,15 @@ const Sidebar = ({
             </li>
           ))}
         </ul>
+      </div>
+      <div className="flex-1 flex">
+        <button
+          onClick={() => signOut()}
+          className="w-full self-end py-4 px-8 text-white bg-red-400 hover:bg-red-500 rounded-b-xl flex items-center"
+        >
+          <PowerIcon className="h-5 w-5 mr-4" />
+          Sign Out
+        </button>
       </div>
     </aside>
   );
