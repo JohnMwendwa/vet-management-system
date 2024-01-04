@@ -18,8 +18,28 @@ const ClientsSkeleton = () => {
           <div className="bg-blue-300 h-3 w-24 rounded-full">&nbsp;</div>
         </div>
         {Array.from({ length: 10 }).map((_, idx) => (
-          <div key={idx} className="bg-gray-200 odd:bg-gray-300 h-10 w-full">
-            &nbsp;
+          <div
+            key={idx}
+            className="bg-gray-200 odd:bg-gray-300 w-full flex justify-around items-center group p-4"
+          >
+            <div className="flex flex-col items-center gap-2 flex-1">
+              <div className="bg-gray-100 group-even:bg-gray-50 h-3 w-24 rounded-full">
+                &nbsp;
+              </div>
+              <div className="bg-gray-100 group-even:bg-gray-50 h-3 w-24 rounded-full">
+                &nbsp;
+              </div>
+            </div>
+            <div className="flex-1">
+              <div className="bg-gray-200 group-even:bg-gray-50 h-3 w-24 rounded-full mx-auto">
+                &nbsp;
+              </div>
+            </div>
+            {/* Action buttons */}
+            <div className="flex gap-2 flex-1 justify-center">
+              <div className="bg-blue-200 h-5 w-4 rounded-sm">&nbsp;</div>
+              <div className="bg-red-200 h-5 w-4 rounded-sm">&nbsp;</div>
+            </div>
           </div>
         ))}
       </div>
