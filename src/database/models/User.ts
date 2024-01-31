@@ -28,6 +28,7 @@ const userSchema = new Schema<UserProps, UserModel>(
     },
     email: {
       type: String,
+      unique: true,
       required: [true, "Email is required"],
     },
     password: {
@@ -74,7 +75,24 @@ userSchema.statics.findByCredentials = async function (email, pass) {
   return userInfo;
 };
 
+userSchema.post("save", function (error, doc, next) {
+  if (error.name === "MongoServerError" && error.code === 11000) {
+    next(new Error("Email already exists!"));
+  } else {
+    next();
+  }
+});
+
+userSchema.post("updateOne", function (error, res, next) {
+  if (error.name === "MongoServerError" && error.code === 11000) {
+    next(new Error("Email already exists!"));
+  } else {
+    next();
+  }
+});
+
 const User =
   (models.User as unknown as UserModel) ||
   model<UserProps, UserModel>("User", userSchema);
+
 export default User;
