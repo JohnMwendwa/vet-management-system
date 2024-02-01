@@ -1,4 +1,4 @@
-import { Schema, model, models, Model, Types } from "mongoose";
+import mongoose, { Schema, model, models, Model, Types } from "mongoose";
 import { compare } from "bcrypt";
 
 export interface UserProps {
@@ -75,21 +75,25 @@ userSchema.statics.findByCredentials = async function (email, pass) {
   return userInfo;
 };
 
-userSchema.post("save", function (error, doc, next) {
-  if (error.name === "MongoServerError" && error.code === 11000) {
+userSchema.post("save", { errorHandler: true }, function (error, doc, next) {
+  if (error.name === "MongoServerError" && (error as any).code === 11000) {
     next(new Error("Email already exists!"));
   } else {
     next();
   }
 });
 
-userSchema.post("updateOne", function (error, res, next) {
-  if (error.name === "MongoServerError" && error.code === 11000) {
-    next(new Error("Email already exists!"));
-  } else {
-    next();
+userSchema.post(
+  "updateOne",
+  { errorHandler: true },
+  function (error, doc, next) {
+    if (error.name === "MongoServerError" && (error as any).code === 11000) {
+      next(new Error("Email already exists!"));
+    } else {
+      next();
+    }
   }
-});
+);
 
 const User =
   (models.User as unknown as UserModel) ||
