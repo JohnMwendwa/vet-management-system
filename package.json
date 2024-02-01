@@ -16,11 +16,11 @@
     "@fullcalendar/timegrid": "^6.1.9",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
-    "@material-tailwind/react": "^2.1.2",
+    "@material-tailwind/react": "^2.1.8",
     "@types/nodemailer": "^6.4.11",
     "bcrypt": "^5.1.1",
     "mongoose": "^7.5.3",
-    "next": "^13.4.9",
+    "next": "^13.5.7-canary.37",
     "next-auth": "^4.23.2",
     "nodemailer": "^6.9.5",
     "react": "^18",
@@ -31,13 +31,13 @@
     "@faker-js/faker": "^8.1.0",
     "@types/bcrypt": "^5.0.0",
     "@types/node": "^20",
-    "@types/react": "^18",
+    "@types/react": "18.2.42",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "^13",
     "postcss": "^8",
     "tailwindcss": "^3",
-    "typescript": "^5.3.3"
+    "typescript": "^5"
   }
 }
