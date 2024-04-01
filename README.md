@@ -16,5 +16,6 @@ Most importantly: the program is completely safe for your Windows system.
 Support for most systems: Windows 7/8/8.1/10/11 (x32/64).
 
 Screenshots:
+
 ![image (1)](https://github.com/JohnMwendwa/vet-management-system/assets/72663882/6be9f555-f415-4c26-a5b6-bd01304f7d5b)
 
