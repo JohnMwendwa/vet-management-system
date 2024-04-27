@@ -21,6 +21,14 @@ First, install the dependencies
 ```bash
 npm install
 ```
+Then create a `.env.local` file  with the following environment variables
+```bash
+LOCAL_URL=Your Local mongoDB URL
+MONGO_URL=Production mongoDB URL
+NEXTAUTH_URL=http://localhost:3000/ | YOUR APP STARTING POINT URL
+```
+
+
 Then, run the development server:
 
 ```bash
