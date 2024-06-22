@@ -25,7 +25,7 @@ npm install
 Start MongoDB
 ```
 docker pull mongo
-docker run mongo
+docker run -d -p 27017:2017 mongo
 ```
 Then create a `.env` file  with the following environment variables
 ```bash
