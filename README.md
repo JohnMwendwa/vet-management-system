@@ -3,6 +3,7 @@
 ![vet-management-system vercel app_dashboard (1)](https://github.com/JohnMwendwa/vet-management-system/assets/72663882/104f8d8d-6309-48a7-8a70-3047f3a7103a)
 
 ## Technologies Used <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Hammer%20and%20Wrench.png" alt="Hammer and Wrench" width="30" height="30" />
+- Docker
 - Material-tailwind/react (UI)
 - Next.js (Full stack app)
 - Next-auth (Authorization & Authentication)
@@ -21,11 +22,16 @@ First, install the dependencies
 ```bash
 npm install
 ```
-Then create a `.env.local` file  with the following environment variables
+Start MongoDB
+```
+docker pull mongo
+docker run mongo
+```
+Then create a `.env` file  with the following environment variables
 ```bash
-LOCAL_URL=Your Local mongoDB URL
+LOCAL_URL=mongodb://localhost:27017
 MONGO_URL=Production mongoDB URL
-NEXTAUTH_URL=http://localhost:3000/ | YOUR APP STARTING POINT URL
+NEXTAUTH_URL=http://localhost:3000
 ```
 
 
