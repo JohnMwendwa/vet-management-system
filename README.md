@@ -45,6 +45,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## Roles and features
+
+Only doctors can add new employees and new clients. Nurses can't do much.  
+Normal users can sign up as clients but can't do much either.
+
 ## Learn More <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Open%20Book.png" alt="Open Book" width="25" height="25" />
 
 To learn more about Next.js, take a look at the following resources:
