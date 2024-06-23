@@ -26,6 +26,7 @@ Then create a `.env.local` file  with the following environment variables
 LOCAL_URL=Your Local mongoDB URL
 MONGO_URL=Production mongoDB URL
 NEXTAUTH_URL=http://localhost:3000/ | YOUR APP STARTING POINT URL
+NEXTAUTH_SECRET=lol
 ```
 
 
