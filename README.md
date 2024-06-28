@@ -74,19 +74,19 @@ Upon creating an account (by signing up), the default role assigned to the newly
 
 The 3 users have the following permissions:
 
-    I. Doctor
+I. Doctor
 
-    - A doctor has full admin rights to  **CREATE**, **EDIT**, **DELETE** a user account, and can assign any role to that account i.e, the doctor can assign that newly created account the role of a doctor, nurse or client.
+- A doctor has full admin rights to **CREATE**, **EDIT**, **DELETE** a user account, and can assign any role to that account i.e, the doctor can assign that newly created account the role of a doctor, nurse or client.
 
-    - A doctor also has full admin rights to **ADD**, **EDIT** and **REMOVE** employees
+- A doctor also has full admin rights to **ADD**, **EDIT** and **REMOVE** employees
 
-    II. Nurses
+II. Nurses
 
-    - Nurses still don't have any admin rights at the moment but that is bound to change in the future. They only have the permission to edit their details i.e they can **EDIT** and **DELETE** their user details but can't change their roles.
+- Nurses still don't have any admin rights at the moment but that is bound to change in the future. They only have the permission to edit their details i.e they can **EDIT** and **DELETE** their user details but can't change their roles.
 
-    III. Client
+III. Client
 
-    - Clients don't posses any admin rights but can only **CREATE**, **EDIT** and **DELETE** their accounts whenever they wish to.
+- Clients don't posses any admin rights but can only **CREATE**, **EDIT** and **DELETE** their accounts whenever they wish to.
 
 ## How to assign yourself **Full Admin Rights**
 
