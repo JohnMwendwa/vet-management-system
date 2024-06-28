@@ -3,6 +3,7 @@
 ![vet-management-system vercel app_dashboard (1)](https://github.com/JohnMwendwa/vet-management-system/assets/72663882/104f8d8d-6309-48a7-8a70-3047f3a7103a)
 
 ## Technologies Used <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Hammer%20and%20Wrench.png" alt="Hammer and Wrench" width="30" height="30" />
+
 - Material-tailwind/react (UI)
 - Next.js (Full stack app)
 - Next-auth (Authorization & Authentication)
@@ -12,22 +13,38 @@
 - Mongoose (Database schema)
 - Bcrypt (Hashing passwords before they're stored in the database)
 - Fullcalendar (Booking and keeping track of appointments)
-  
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Parachute.png" alt="Parachute" width="30" height="30" />
+
 First, install the dependencies
+
 ```bash
 npm install
 ```
-Then create a `.env.local` file  with the following environment variables
+
+Then create a `.env.local` file with the following environment variables
+
 ```bash
 LOCAL_URL=Your Local mongoDB URL
 MONGO_URL=Production mongoDB URL
 NEXTAUTH_URL=http://localhost:3000/ | YOUR APP STARTING POINT URL
+NEXTAUTH_SECRET=Secret to hash your tokens
 ```
 
+Before running the app, ensure your local mongodb server is running or skip this part if you're using an online database
+
+```bash
+# In your command-line, go to where your mongodb bin is installed by running the following command (Tweak in accordance with your mongodb installation folder)
+
+cd ../../mongodb/bin
+
+# Then start the mongodb server by running the following command
+
+net start mongodb
+
+```
 
 Then, run the development server:
 
@@ -44,6 +61,36 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+## User Roles and permissions
+
+The app has 3 types of users, namely :
+
+1.  Doctors
+2.  Nurses
+3.  Clients
+
+Upon creating an account (by signing up), the default role assigned to the newly created account is that of a client.
+
+The 3 users have the following permissions:
+
+    I. Doctor
+
+    - A doctor has full admin rights to  **CREATE**, **EDIT**, **DELETE** a user account, and can assign any role to that account i.e, the doctor can assign that newly created account the role of a doctor, nurse or client.
+
+    - A doctor also has full admin rights to **ADD**, **EDIT** and **REMOVE** employees
+
+    II. Nurses
+
+    - Nurses still don't have any admin rights at the moment but that is bound to change in the future. They only have the permission to edit their details i.e they can **EDIT** and **DELETE** their user details but can't change their roles.
+
+    III. Client
+
+    - Clients don't posses any admin rights but can only **CREATE**, **EDIT** and **DELETE** their accounts whenever they wish to.
+
+## How to assign yourself **Full Admin Rights**
+
+Once you fork this repo, signup atleast one account and then go to your database and change the role of that account to "doctor" and that's it, you have full admin rights.
 
 ## Learn More <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Open%20Book.png" alt="Open Book" width="25" height="25" />
 
