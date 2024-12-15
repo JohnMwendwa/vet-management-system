@@ -8,6 +8,7 @@ import {
   Switch,
   Typography,
 } from "@material-tailwind/react";
+import { useEffect, useRef } from "react";
 
 const Configurator = () => {
   const {
@@ -23,8 +24,32 @@ const Configurator = () => {
     red: "from-red-400 to-red-600",
     pink: "from-pink-400 to-pink-600",
   };
+
+  const configuratorRef = useRef(null);
+
+  // Close configurator when clicking outside of it
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (
+        configuratorRef.current &&
+        !configuratorRef.current.contains(event.target)
+      ) {
+        dispatch({ type: "OPEN_CONFIGURATOR", payload: false });
+      }
+    };
+
+    if (openConfigurator) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [openConfigurator, dispatch]);
+
   return (
     <aside
+      ref={configuratorRef}
       className={`fixed top-0 right-0 z-50 h-screen w-96 bg-white px-2.5 shadow-lg transition-transform duration-300 ${
         openConfigurator ? "translate-x-0" : "translate-x-96"
       }`}
