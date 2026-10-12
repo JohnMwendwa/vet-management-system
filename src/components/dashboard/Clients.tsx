@@ -14,13 +14,17 @@ import { MagnifyingGlassIcon, UserPlusIcon } from "@heroicons/react/24/outline";
 import EditDialog from "../EditDialog";
 import DeleteDialog from "../DeleteDialog";
 import AddDialog from "../AddDialog";
+import Pagination from "../Pagination";
 
 interface ClientsProps {
   data: UserProps[];
 }
 
+const ITEMS_PER_PAGE = 8;
+
 const Clients = ({ data }: ClientsProps) => {
   const [searchClient, setSearchClient] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filteredClients = useMemo(() => {
     return data.filter((client) => {
@@ -31,6 +35,17 @@ const Clients = ({ data }: ClientsProps) => {
         .includes(searchClient.trim().toLowerCase());
     });
   }, [searchClient, data]);
+
+  const totalPages = Math.ceil(filteredClients.length / ITEMS_PER_PAGE) || 1;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedClients = useMemo(() => {
+    return filteredClients.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredClients, startIndex]);
+
+  const handleSearchChange = (val: string) => {
+    setSearchClient(val);
+    setCurrentPage(1);
+  };
   return (
     <Card className="mt-12 mb-8 flex flex-col w-full">
       <CardHeader floated={false} shadow={false} className="rounded-none p-4">
@@ -51,7 +66,7 @@ const Clients = ({ data }: ClientsProps) => {
                 color="blue"
                 icon={<MagnifyingGlassIcon className="h-5 w-5" />}
                 value={searchClient}
-                onChange={(e) => setSearchClient(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
               />
             </div>
             <AddDialog
@@ -87,10 +102,12 @@ const Clients = ({ data }: ClientsProps) => {
             </tr>
           </thead>
           <tbody>
-            {filteredClients.map(
+            {paginatedClients.map(
               ({ _id, firstName, lastName, email, createdAt }, idx) => {
                 const className = `py-3 px-5 ${
-                  idx === data.length - 1 ? "" : "border-b border-blue-gray-50"
+                  idx === paginatedClients.length - 1
+                    ? ""
+                    : "border-b border-blue-gray-50"
                 }`;
 
                 return (
@@ -138,6 +155,14 @@ const Clients = ({ data }: ClientsProps) => {
           </tbody>
         </table>
       </CardBody>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+        startIndex={startIndex}
+        endIndex={startIndex + ITEMS_PER_PAGE}
+        totalItems={filteredClients.length}
+      />
     </Card>
   );
 };

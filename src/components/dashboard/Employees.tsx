@@ -19,10 +19,13 @@ import formatDate from "@/helpers/format-date";
 import EditDialog from "../EditDialog";
 import AddDialog from "../AddDialog";
 import DeleteDialog from "../DeleteDialog";
+import Pagination from "../Pagination";
 
 interface EmployeesProps {
   data: UserProps[];
 }
+
+const ITEMS_PER_PAGE = 8;
 
 const TABS = [
   {
@@ -41,6 +44,7 @@ const TABS = [
 
 const Employees = ({ data }: EmployeesProps) => {
   const [searchEmployee, setSearchEmployee] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filteredEmployees: UserProps[] = useMemo(() => {
     return data.filter((employee) => {
@@ -52,6 +56,17 @@ const Employees = ({ data }: EmployeesProps) => {
         .includes(searchEmployee.trim().toLowerCase());
     });
   }, [searchEmployee, data]);
+
+  const totalPages = Math.ceil(filteredEmployees.length / ITEMS_PER_PAGE) || 1;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedEmployees = useMemo(() => {
+    return filteredEmployees.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredEmployees, startIndex]);
+
+  const handleSearchChange = (val: string) => {
+    setSearchEmployee(val);
+    setCurrentPage(1);
+  };
 
   return (
     <Card className="mt-12 mb-8 flex flex-col">
@@ -88,9 +103,9 @@ const Employees = ({ data }: EmployeesProps) => {
                   value={value}
                   onClick={() => {
                     if (value === "all") {
-                      setSearchEmployee("");
+                      handleSearchChange("");
                     } else {
-                      setSearchEmployee(value);
+                      handleSearchChange(value);
                     }
                   }}
                 >
@@ -106,7 +121,7 @@ const Employees = ({ data }: EmployeesProps) => {
               color="blue"
               icon={<MagnifyingGlassIcon className="h-5 w-5" />}
               value={searchEmployee}
-              onChange={(e) => setSearchEmployee(e.target.value)}
+              onChange={(e) => handleSearchChange(e.target.value)}
             />
           </div>
         </div>
@@ -131,10 +146,12 @@ const Employees = ({ data }: EmployeesProps) => {
             </tr>
           </thead>
           <tbody>
-            {filteredEmployees.map(
+            {paginatedEmployees.map(
               ({ _id, firstName, lastName, email, role, createdAt }, idx) => {
                 const className = `py-3 px-5 ${
-                  idx === data.length - 1 ? "" : "border-b border-blue-gray-50"
+                  idx === paginatedEmployees.length - 1
+                    ? ""
+                    : "border-b border-blue-gray-50"
                 }`;
 
                 return (
@@ -188,6 +205,14 @@ const Employees = ({ data }: EmployeesProps) => {
           </tbody>
         </table>
       </CardBody>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+        startIndex={startIndex}
+        endIndex={startIndex + ITEMS_PER_PAGE}
+        totalItems={filteredEmployees.length}
+      />
     </Card>
   );
 };
