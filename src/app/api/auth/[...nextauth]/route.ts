@@ -23,7 +23,7 @@ export const authOptions: NextAuthOptions = {
 
         const user = await User.findByCredentials(
           credentials?.email.trim()!,
-          credentials?.password.trim()!
+          credentials?.password!
         );
 
         return {
