@@ -1,6 +1,10 @@
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+
 import Home from "@/components/dashboard/Home";
 import connectDB from "@/database/connection";
 import User from "@/database/models/User";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export const revalidate = 0;
 
@@ -35,6 +39,11 @@ const fetchStatistics = async () => {
 };
 
 const DashboardPage = async () => {
+  const session = await getServerSession(authOptions);
+  if (session?.user?.role !== "doctor") {
+    redirect("/dashboard/profile");
+  }
+
   const data = await fetchStatistics();
 
   return <Home {...data} />;
