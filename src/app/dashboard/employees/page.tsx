@@ -1,6 +1,10 @@
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+
 import Employees from "@/components/dashboard/Employees";
 import connectDB from "@/database/connection";
 import User from "@/database/models/User";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export const revalidate = 0;
 
@@ -15,6 +19,11 @@ const fetchEmployees = async () => {
 };
 
 const EmployeesPage = async () => {
+  const session = await getServerSession(authOptions);
+  if (session?.user?.role !== "doctor") {
+    redirect("/dashboard/profile");
+  }
+
   const employees = await fetchEmployees();
   return <Employees data={employees} />;
 };
